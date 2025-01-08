@@ -24,8 +24,8 @@ func main() {
 	var books []Book
 	c.OnHTML("li.col-xs-6.col-sm-4.col-md-3.col-lg-3", func(h *colly.HTMLElement) {
 		book := Book{
-			Img:   h.ChildAttr("div.image_container a img", "src"),
-			Title: h.Request.AbsoluteURL(h.ChildAttr("h3 a", "title")),
+			Img:   h.Request.AbsoluteURL(h.ChildAttr("div.image_container a img", "src")),
+			Title: h.ChildAttr("h3 a", "title"),
 			URL:   h.Request.AbsoluteURL(h.ChildAttr("h3 a", "href")),
 			Price: h.ChildText("div.product_price p.price_color"),
 		}
@@ -48,5 +48,4 @@ func main() {
 		fmt.Printf("Image URL: %s\n", book.Img)
 		fmt.Printf("Book URL: %s\n", book.URL)
 	}
-
 }
